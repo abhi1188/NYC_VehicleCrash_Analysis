@@ -22,7 +22,7 @@ st.title('NYC Motor Vehicle Crash Analysis')
 
 
 # Fetch Data
-data_url = "https://data.cityofnewyork.us/resource/h9gi-nx95.csv?$$app_token=o4zuGaRztD7CZUutUDTALPc61&$where=crash_date>='2021-12-04'&$limit=3000000"
+data_url = "https://data.cityofnewyork.us/resource/h9gi-nx95.csv?$$app_token=o4zuGaRztD7CZUutUDTALPc61&$where=crash_date>='2021-12-12'&$limit=3000000"
 
 #Define Global Variables
 
@@ -506,6 +506,6 @@ with st.expander("ESTIMATE FUTURE INJURIES AND FATALITIES - "):
             btn = st.form_submit_button("Click to run model")
             if btn:
                 y_pred_inj,y_pred_kill,y_pred_crash = execute_model(get_all_zip,zip,start_pred_date,end_pred_date,time_Of_Day)
-                st.write("Estimated Crash - ", y_pred_crash.round().astype("int").sum())
-                st.write("Estimated Injuries - ", y_pred_inj.round().astype("int").sum())
-                st.write("Estimated Fatalities - ", y_pred_kill.round().astype("int").sum())
+                st.write("Estimated Crash - ", y_pred_crash.sum().round().astype("int"))
+                st.write("Estimated Injuries - ", y_pred_inj.sum().round().astype("int"))
+                st.write("Estimated Fatalities - ", y_pred_kill.sum().round().astype("int"))
